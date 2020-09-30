@@ -1,4 +1,4 @@
-CREATE DATABASE Umuzi;
+-- CREATE DATABASE Umuzi;
 
 CREATE TABLE Customers(
 	CustomerID int,
@@ -21,19 +21,6 @@ CREATE TABLE Employees(
 	JobTitle varchar(20),
 	PRIMARY KEY (EmployeeID)	  
 );
-CREATE TABLE Orders (
-    OrderID int,
-    ProductID int,
-    PaymentID int,
-    FulfilledByEmployeeID int,
-    DateRequired date,
-    DateShipped date,
-    Status varchar(20),
-	PRIMARY KEY(OrderID),
-    FOREIGN KEY(ProductID) REFERENCES Products(ProductID),
-    FOREIGN KEY(PaymentID) REFERENCES Payments(PaymentID),
-    FOREIGN KEY(FulfilledByEmployeeID) REFERENCES Employees(EmployeeID)
-);
 CREATE TABLE Payments(
 	CustomerID int,
 	PaymentID int,
@@ -48,6 +35,19 @@ CREATE TABLE Products(
 	Description varchar(300),
 	BuyPrice decimal(5,2),
 	PRIMARY KEY(ProductId)
+);
+CREATE TABLE Orders (
+    OrderID int,
+    ProductID int,
+    PaymentID int,
+    FulfilledByEmployeeID int,
+    DateRequired date,
+    DateShipped date,
+    Status varchar(20),
+	PRIMARY KEY(OrderID),
+    FOREIGN KEY(ProductID) REFERENCES Products(ProductID),
+    FOREIGN KEY(PaymentID) REFERENCES Payments(PaymentID),
+    FOREIGN KEY(FulfilledByEmployeeID) REFERENCES Employees(EmployeeID)
 );
 
 INSERT INTO Customers(CustomerID,FirstName, LastName, Gender, Address, Phone, Email, City, Country)
@@ -68,13 +68,6 @@ VALUES(2,'Lesly','Cronje','LesC@gmail.com','Clerk');
 INSERT INTO Employees(EmployeeID,FirstName,LastName,Email,JobTitle)
 VALUES(3,'Gideon','Maduku','m@gmail.com','Accountant');
 
-INSERT INTO Orders(OrderId,ProductID,PaymentID,FulfilledByEmployeeID,DateRequired,DateShipped,Status)
-VALUES(1,1,1,2,'05-09-2018',NULL,'Not shipped');
-INSERT INTO Orders(OrderId,ProductID,PaymentID,FulfilledByEmployeeID,DateRequired,DateShipped,Status)
-VALUES(2,1,2,2,'04-09-2018','03-09-2018','Shipped');
-INSERT INTO Orders(OrderId,ProductID,PaymentID,FulfilledByEmployeeID,DateRequired,DateShipped,Status)
-VALUES(3,3,3,3,'06-09-2018',NULL,'Not shipped');
-
 INSERT INTO Payments(CustomerID,PaymentID,PaymentDate,Amount)
 VALUES(1,1,'01-09-2018',150.75);
 INSERT INTO Payments(CustomerID,PaymentID,PaymentDate,Amount)
@@ -89,4 +82,9 @@ VALUES(2,'Classic Car','Turnable front wheels, steering function',550.75);
 INSERT INTO Products(ProductId,ProductName,Description,BuyPrice)
 VALUES(3,'Sports car','Turnable front wheels, steering function',700.60);
 
-
+INSERT INTO Orders(OrderId,ProductID,PaymentID,FulfilledByEmployeeID,DateRequired,DateShipped,Status)
+VALUES(1,1,1,2,'05-09-2018',NULL,'Not shipped');
+INSERT INTO Orders(OrderId,ProductID,PaymentID,FulfilledByEmployeeID,DateRequired,DateShipped,Status)
+VALUES(2,1,2,2,'04-09-2018','03-09-2018','Shipped');
+INSERT INTO Orders(OrderId,ProductID,PaymentID,FulfilledByEmployeeID,DateRequired,DateShipped,Status)
+VALUES(3,3,3,3,'06-09-2018',NULL,'Not shipped');
