@@ -1,4 +1,4 @@
--- CREATE DATABASE Umuzi;
+CREATE DATABASE Umuzi;
 
 CREATE TABLE Customers(
 	CustomerID int,
